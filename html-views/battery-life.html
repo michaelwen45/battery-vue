@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Battería</title>
+  <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="../css/bootstrap/css/bootstrap.css">
+</head>
+<body style="color: white; background-color: #282C34; margin-top: 10vh; text-align: center";>
+  <div id='nivel-bateria' class="container">
+    <h1 style="margin-bottom: 5vh">{{ title }}</h1>
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <i class='fa fa-3x' v-bind:class="bateriaCss" v-bind:style="bateriaStyle"> {{ porcentaje }}%</i>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4" style="padding-top: 2vh; padding-bottom: 5vh">
+        <button class="btn btn-lg btn-danger col-sm-4 col-sm-offset-2" @click='descargar'>Descargar</button>
+        <button class="btn btn-lg btn-success col-sm-4" v-on:click='cargar'>Cargar</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="list-group col-sm-8 col-sm-offset-2">
+        <ul style="color: #282C34;">
+          <li class='list-group-item' v-for="nivel of niveles"> <!--  | filterBy '50' -->
+            <span class="fa fa-close pull-right danger" v-on:click='remove(nivel)'></span>
+            <div class="text-left" style="font-weight: 600">{{ nivel.text }}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src='../js/vue.js'></script>
+<script type="text/javascript" src='../js/models/battery.js'></script>
+<script type="text/javascript" src='../js/view-models/vue-battery.js'></script>
+</html>
