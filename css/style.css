@@ -1,0 +1,11 @@
+body{
+  color: white;
+  background-color: #282C34;
+  margin-top: 10vh;
+  text-align: center
+}
+
+legend{
+  padding-top: 10px;
+  color: white;
+}
