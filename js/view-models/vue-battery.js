@@ -9,35 +9,20 @@ var vm = new Vue({
       return (this.carga / 4) * 100;
     },
     bateriaCss: function(){
-      return {
-          'fa-battery-empty':          this.carga === 0,
-          'fa-battery-quarter':        this.carga === 1,
-          'fa-battery-half':           this.carga === 2,
-          'fa-battery-three-quarters': this.carga === 3,
-          'fa-battery-full':           this.carga === 4
-      };
+      css_classes = ['fa-battery-empty', 'fa-battery-quarter', 'fa-battery-half', 'fa-battery-three-quarters', 'fa-battery-full'];
+      return css_classes[this.carga];
     },
     bateriaStyle: function(){
-      return {
-        color: this.carga === 0 ? '#ff1a1a' :
-               this.carga === 1 ? '#ff751a' :
-               this.carga === 2 ? '#CFDE45' :
-               this.carga === 3 ? '#68DE44' : '#1CC124'
-      };
+      css_colors = ['#ff1a1a', '#ff751a', '#CFDE45', '#68DE44', '#1CC124']
+      return { color: css_colors[this.carga] };
     }
   },
   methods: {
-    cargar: function(){
-      if(this.carga < 4) {
-        this.carga++;
-        this.niveles.push({text: 'La batería se ha cargado al ' + this.porcentaje + '%'});
-      }
-    },
-    descargar: function(){
-      if(this.carga > 0) {
-        this.carga--;
-        this.niveles.push({text: 'La batería se ha descargado al ' + this.porcentaje + '%'});
-      }
+    cambio_carga: function (value) {
+      if(this.carga == 4 && value == 1) return;
+      if(this.carga == 0 && value == -1) return;
+      this.carga += value;
+      this.niveles.push({text: 'La carga de la batería se ha cambiado a ' + this.porcentaje + '%'});
     },
     remove: function(nivel){
       this.niveles.$remove(nivel);
